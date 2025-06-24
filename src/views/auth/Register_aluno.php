@@ -102,4 +102,8 @@ $errors = "";
     <a href="index.php?controller=professor&action=showServicesPage">Serviços</a>
     <hr>
 </body>
+<footer>
+    <p>Desenvolvido por Juliana e Sander</p>
+</footer>
+
 </html>

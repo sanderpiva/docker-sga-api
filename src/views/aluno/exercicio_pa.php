@@ -127,14 +127,7 @@ if (isset($_POST['calcular_pa'])) {
         .btn_logout:hover {
             background-color: #c82333;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-
+        
         /* Estilos responsivos */
         @media (max-width: 768px) {
             #pa_form, #pa_result {

@@ -45,4 +45,8 @@
     <a href="index.php?controller=auth&action=logout">Logout -> Home Page</a>
 
 </body>
+<footer>
+    <p>Desenvolvido por Juliana e Sander</p>
+</footer>
+
 </html>

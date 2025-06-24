@@ -26,7 +26,7 @@
                 <a href="index.php?controller=auth&action=showAlunoRegisterForm">Cadastrar como Aluno</a>
             </div>
         </div>
-    </div><br><br><br><br><br><br><br><br>
+    </div><br><br><br><br><br><br><br><br><br><br>
     <footer>
         <p>Desenvolvido por Juliana e Sander</p>
     </footer>
