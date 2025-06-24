@@ -37,13 +37,16 @@ class Professor_controller
 
     public function handleSelection() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $tipo_calculo = $_POST['tipo_calculo'] ?? '';
+            $tipo_assunto = $_POST['tipo_assunto'] ?? '';
 
-            if ($tipo_calculo === 'servicos') {
+            if ($tipo_assunto === 'servicos') {
                 header("Location: index.php?controller=professor&action=showServicesPage");
                 exit();
-            } elseif ($tipo_calculo === 'resultados') {
+            } elseif ($tipo_assunto === 'resultados') {
                 header("Location: index.php?controller=professor&action=showResultsPage");
+                exit();
+            }elseif ($tipo_assunto === 'grafico') {
+                header("Location: index.php?controller=grafico&action=viewProvasPorProfessorEDisciplina");
                 exit();
             } else {
                 $error = "Selecione uma opção válida.";

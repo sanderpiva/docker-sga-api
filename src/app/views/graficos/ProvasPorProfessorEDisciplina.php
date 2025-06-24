@@ -1,3 +1,22 @@
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    header("Location: index.php?controller=auth&action=logout");
+    exit();
+}
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['tipo_usuario'] !== 'professor') {
+    header("Location: index.php?controller=auth&action=showLoginForm"); // Corrigido para o controlador certo
+    exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +71,11 @@
                 });
             });
     </script>
+    <br><br><br>
+    <a href="index.php?controller=auth&action=logout"><em>Logout -> HomePage</em></a>
+
 </body>
+
 <footer><br><br><br><br><br><br><br><br><br><br><br>
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>

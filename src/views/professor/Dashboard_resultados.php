@@ -21,7 +21,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['ti
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="public/css/style.css">
-    <title>Mostrar Tabela com Registros de Prova</title>
+    <title>Página Resultados dos Alunos: Algebrando</title>
   </head>
   <body>
 

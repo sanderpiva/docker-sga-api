@@ -28,10 +28,11 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['ti
     <div class="form_container">
         <form class="form" method="post" action="index.php?controller=professor&action=handleSelection">
             <h2>Login Professor</h2>
-            <select id="tipo_calculo" name="tipo_calculo" required>
+            <select id="tipo_assunto" name="tipo_assunto" required>
                 <option value="">Selecione:</option>
                 <option value="servicos">Acessar serviços</option>
                 <option value="resultados">Resultados prova matemática modelo</option>
+                <option value="grafico">Gráfico quantidade de provas aplicadas pelo professor</option>
             </select><br><br>
 
             <button type="submit">Login</button>
