@@ -4,10 +4,10 @@ class Prova {
     private $pdo;
 
     public function __construct() {
-        $dbHost = "mysql"; 
-        $dbName = "gerenciamento_academico_completo"; 
-        $dbUser = "root"; 
-        $dbPass = "rootpassword"; 
+        $dbHost = "mysql";
+        $dbName = "gerenciamento_academico_completo";
+        $dbUser = "root";
+        $dbPass = "rootpassword";
 
         try {
             $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
@@ -27,9 +27,11 @@ class Prova {
             FROM
                 prova p
             JOIN
-                professor prof ON prof.id_professor = p.Disciplina_Professor_id_professor -- CORRIGIDO
+                professor prof ON prof.id_professor = p.Disciplina_Professor_id_professor
             JOIN
-                disciplina disc ON disc.id_disciplina = p.Disciplina_id_disciplina         -- CORRIGIDO
+                disciplina disc ON disc.id_disciplina = p.Disciplina_id_disciplina
+            WHERE
+                YEAR(p.data_prova) = 2025 -- Adicionando a condição para o ano 2025
             GROUP BY
                 prof.nome,
                 disc.nome
