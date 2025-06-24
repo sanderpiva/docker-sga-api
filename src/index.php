@@ -40,6 +40,24 @@ require_once __DIR__ . '/controllers/Prova_controller.php';
 require_once __DIR__ . '/controllers/Questoes_controller.php';
 require_once __DIR__ . '/controllers/Respostas_controller.php';
 require_once __DIR__ . '/controllers/Conteudo_controller.php';
+require_once __DIR__ . '/app/controllers/Grafico_controller.php';
+    
+/*
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if ($uri === '/graficos/provas-por-professor-e-disciplina') {
+    //require_once __DIR__ . '/app/controllers/Grafico_controller.php';
+    $controller = new Grafico_controller();
+    $controller->viewProvasPorProfessorEDisciplina();
+    exit;
+}
+elseif ($uri === '/graficos/dados-provas-por-professor-e-disciplina') {
+    //require_once __DIR__ . '/app/controllers/Grafico_controller.php';
+    $controller = new Grafico_controller();
+    $controller->dadosProvasPorProfessorEDisciplina();
+    exit;
+}*/
+
 
 /**
  * Redireciona o navegador para uma nova URL.
@@ -99,7 +117,8 @@ if (
     $controllerClassName === 'Matricula_controller' ||
     $controllerClassName === 'Prova_controller' ||
     $controllerClassName === 'Questoes_controller' ||
-    $controllerClassName === 'Respostas_controller' 
+    $controllerClassName === 'Respostas_controller' ||
+    $controllerClassName === 'Grafico_controller' 
     
 ) {
     $controller = new $controllerClassName($conexao); // Passa a conexão aqui!
