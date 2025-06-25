@@ -1,19 +1,14 @@
 <?php
-// Inicia a sessão para acessar os dados do aluno logado.
-//session_start();
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// --- INÍCIO: CONTROLE DE ACESSO E LOGOUT ---
-
-// Verifica se o usuário está logado e se é um aluno.
 if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['tipo_usuario'] !== 'aluno') {
     header("Location: ../index.php"); // Redireciona para a home ou login se não for aluno logado
     exit(); // Interrompe a execução do script para evitar processamento indevido
 }
 
-// Verifica se o logout foi solicitado.
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_unset(); // Remove todas as variáveis de sessão.
     session_destroy(); // Destrói a sessão.
@@ -40,9 +35,6 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     exit(); // Garante que nenhum outro conteúdo da página seja renderizado.
 }
 
-// --- FIM: CONTROLE DE ACESSO E LOGOUT ---
-
-// Recupera os dados do aluno da sessão.
 $nome_aluno_sessao = $_SESSION['nome_usuario'] ?? 'Nome Desconhecido';
 $email_aluno_sessao = $_SESSION['email_usuario'] ?? 'email_desconhecido@example.com';
 $turma_aluno_sessao = $_SESSION['nome_turma'] ?? 'Turma Desconhecida';
@@ -53,9 +45,6 @@ global $conexao;
 $aluno_ja_fez_prova = false;
 $mensagem_alerta = "";
 
-// --- VERIFICAÇÃO SE O ALUNO JÁ FEZ A PROVA ---
-// É importante ter uma coluna na tabeladados que identifique unicamente o aluno,
-// como o ID do aluno ou o email. Usaremos o email para este exemplo, mas o ID é mais robusto.
 if ($email_aluno_sessao !== 'email_desconhecido@example.com') { // Garante que temos um email válido para checar.
     try {
         $sql_checa_prova = "SELECT COUNT(*) FROM tabeladados WHERE email = :email";
@@ -180,9 +169,7 @@ if ($email_aluno_sessao !== 'email_desconhecido@example.com') { // Garante que t
         <?php
         // Processamento do formulário de submissão da prova
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // --- VALIDAÇÃO CRÍTICA: NÃO PROCESSAR SE O ALUNO JÁ FEZ A PROVA ---
-            // Revalida se o aluno já fez a prova, para evitar submissões repetidas
-            // caso o javascript seja desativado ou a classe 'disabled' removida via console.
+            
             $re_aluno_ja_fez_prova = false;
             if ($email_aluno_sessao !== 'email_desconhecido@example.com') {
                 try {
@@ -247,8 +234,6 @@ if ($email_aluno_sessao !== 'email_desconhecido@example.com') { // Garante que t
                         echo "<p style='color:red; font-weight:bold;'>Que pena, você não foi aprovado nesta prova. Estude mais!</p>";
                     }
 
-                    // --- SALVANDO OS RESULTADOS NO BANCO DE DADOS ---
-                    // A conexão já foi incluída no início do arquivo.
                     try {
                         $sql = "INSERT INTO tabeladados (nome, email, q1, q2, q3, q4, nota, turma)
                                 VALUES (:nome, :email, :q1, :q2, :q3, :q4, :media, :turma)";

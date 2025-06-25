@@ -33,6 +33,7 @@
     gap: 40px; /* Adiciona um espaço de 40px entre a imagem e o formulário */
     flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
     padding: 20px 0; /* Um pouco de padding para o contêiner */
+    
 }
 
 /* Estilos para a div da imagem - usando sua classe existente */
@@ -119,7 +120,6 @@
     text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
 }
 
-/* Mantenha os outros estilos que você já tem (footer, hr, etc.) */
 footer {
     margin-top: auto;
     margin-bottom: 0%;
@@ -128,6 +128,7 @@ footer {
     background-color: #f4f4f4;
     max-width: 100%;
     width: 100%;
+    font-family: sans-serif;
 }
 
 
@@ -153,7 +154,15 @@ a{
     margin-top: 380px;
 }
 
-h1{
+.clima{
+    background-color:#e8f4ff;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+h1, h3{
     text-align: center;
     font-size: 30px;
     font-family: sans-serif;

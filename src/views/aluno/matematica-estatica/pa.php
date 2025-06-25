@@ -61,7 +61,7 @@ if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
         <a class="btn_dashboard" href="index.php?controller=aluno&action=showStaticServicesPage">Finalizar</a>
     </div>
     
-</body><br><br>
+</body><br><br><br><br><br><br><br><br><br><br>
 <footer>
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>

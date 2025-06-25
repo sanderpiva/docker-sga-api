@@ -184,5 +184,132 @@ class AuthModel {
             return false; 
         }
     }
+    //openweathermap
+    /*
+    public function getWeather($city = "Machado,BR") {
+        $apiKey = "SUA_API_KEY_AQUI";
+        $url = "https://api.openweathermap.org/data/2.5/weather?q=" . urlencode($city) . "&appid=$apiKey&units=metric&lang=pt_br";
+        
+        try {
+        $response = file_get_contents($url);
+            if ($response === FALSE) {
+                return null;
+            }
+            $data = json_decode($response, true);
+            return [
+                'temperatura' => $data['main']['temp'] ?? null,
+                'descricao' => $data['weather'][0]['description'] ?? null,
+                'icone' => $data['weather'][0]['icon'] ?? null
+            ];
+        } catch (Exception $e) {
+            error_log("Erro ao buscar clima: " . $e->getMessage());
+            return null;
+        }
+    }*/
+
+    public function getWeather($city = "Machado") { // Ajuste o default para uma cidade real
+
+        $latitude = -21.6845;
+        $longitude = -45.922;
+
+        $weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude={$latitude}&longitude={$longitude}&current_weather=true&forecast_days=1&timezone=America%2FSao_Paulo&lang=pt";
+
+        try {
+            $weatherResponse = file_get_contents($weatherUrl);
+
+            if ($weatherResponse === FALSE) {
+                error_log("Erro ao buscar clima: file_get_contents falhou para URL: " . $weatherUrl);
+                echo "</pre>"; // Fecha a tag <pre> antes de sair
+                return null;
+            }
+
+            $weatherData = json_decode($weatherResponse, true);
+            
+            if (!isset($weatherData['current_weather'])) {
+                error_log("Dados de clima 'current_weather' não encontrados na resposta da Open-Meteo.");
+                return null;
+            }
+
+            $temp = $weatherData['current_weather']['temperature'];
+            $weathercode = $weatherData['current_weather']['weathercode'];
+
+            $weatherDescriptions = [
+                0 => 'Céu limpo',
+                1 => 'Principalmente limpo',
+                2 => 'Parcialmente nublado',
+                3 => 'Nublado',
+                45 => 'Nevoeiro',
+                48 => 'Nevoeiro de geada depositada',
+                51 => 'Chuvisco leve',
+                53 => 'Chuvisco moderado',
+                55 => 'Chuvisco denso',
+                56 => 'Chuvisco congelante leve',
+                57 => 'Chuvisco congelante denso',
+                61 => 'Chuva leve',
+                63 => 'Chuva moderada',
+                65 => 'Chuva forte',
+                66 => 'Chuva congelante leve',
+                67 => 'Chuva congelante forte',
+                71 => 'Queda de neve leve',
+                73 => 'Queda de neve moderada',
+                75 => 'Queda de neve forte',
+                77 => 'Grãos de neve',
+                80 => 'Pancadas de chuva leve',
+                81 => 'Pancadas de chuva moderada',
+                82 => 'Pancadas de chuva violenta',
+                85 => 'Pancadas de neve leve',
+                86 => 'Pancadas de neve forte',
+                95 => 'Trovoada leve ou moderada',
+                96 => 'Trovoada com granizo leve',
+                99 => 'Trovoada com granizo forte',
+            ];
+
+            // Mapeamento de weathercode para emojis (muito simples)
+            $weatherEmojis = [
+                0 => '☀️', // Céu limpo
+                1 => '🌤️', // Principalmente limpo
+                2 => '⛅', // Parcialmente nublado
+                3 => '☁️', // Nublado
+                45 => '🌫️', // Nevoeiro
+                48 => '🌫️', // Nevoeiro de geada
+                51 => '🌧️', // Chuvisco leve
+                53 => '🌧️', // Chuvisco moderado
+                55 => '🌧️', // Chuvisco denso
+                56 => '🌧️', // Chuvisco congelante leve
+                57 => '🌧️', // Chuvisco congelante denso
+                61 => '☔', // Chuva leve
+                63 => '☔', // Chuva moderada
+                65 => '☔', // Chuva forte
+                66 => '☔', // Chuva congelante leve
+                67 => '☔', // Chuva congelante forte
+                71 => '❄️', // Neve leve
+                73 => '❄️', // Neve moderada
+                75 => '❄️', // Neve forte
+                77 => '🌨️', // Grãos de neve
+                80 => '🌦️', // Pancadas de chuva leve
+                81 => '🌦️', // Pancadas de chuva moderada
+                82 => '🌧️', // Pancadas de chuva violenta
+                85 => '🌨️', // Pancadas de neve leve
+                86 => '🌨️', // Pancadas de neve forte
+                95 => '⛈️', // Trovoada
+                96 => '⛈️', // Trovoada com granizo leve
+                99 => '⛈️', // Trovoada com granizo forte
+            ];
+
+            return [
+                'temperatura' => round($temp),
+                'descricao' => $weatherDescriptions[$weathercode] ?? 'Condição desconhecida',
+                'icone' => $weatherEmojis[$weathercode] ?? '❓' // Retorna o emoji ou um ponto de interrogação
+            ];
+            
+
+        } catch (Exception $e) {
+            error_log("Exceção ao buscar clima com Open-Meteo: " . $e->getMessage());
+            echo "</pre>"; 
+            return null;
+        }
+    
+
+    }
    
 }

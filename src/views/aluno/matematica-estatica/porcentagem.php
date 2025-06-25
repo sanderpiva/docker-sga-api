@@ -3,11 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-/*
-if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
-    session_start();
-    $_SESSION['pa_status'] = 1; // Define o status da atividade na sessão
-}*/
+
 ?>
 
 
@@ -67,10 +63,7 @@ if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
     </div>
     <div id="porcentagem_result">
         <?php
-            //session_start(); // Inicia a sessão no início do arquivo
-            // O PHP para processar os resultados continua o mesmo,
-            // pois ele já verifica qual botão de submit foi clicado.
-            // Certifique-se de que este bloco PHP esteja onde você deseja que os resultados apareçam.
+            
             if (isset($_POST['calcular_porcentagem_btn'])) {
                 $valor_total = $_POST['valor_total_porc'];
                 $porcentagem = $_POST['porcentagem_porc'];
@@ -115,6 +108,7 @@ if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
     </script>
 
 </body><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer>
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>

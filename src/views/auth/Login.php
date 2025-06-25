@@ -7,6 +7,17 @@
 </head>
 <body>
     <h1>SISTEMA ACADEMICO: IRACEMA RODRIGUES</h1>
+    <?php if (isset($clima) && $clima): ?>
+        <div style="background-color:#e8f4ff;padding:10px;border-radius:8px;text-align:center;margin-bottom:20px;">
+            <h3>Clima atual em Machado/MG</h3>
+            <p>
+                <?= htmlspecialchars($clima['descricao']) ?>,
+                <?= htmlspecialchars($clima['temperatura']) ?> °C
+                <span style="font-size: 2em; vertical-align: middle;"><?= htmlspecialchars($clima['icone']) ?></span>       
+            </p>
+        </div>
+    <?php endif; ?>
+
     <div class="content-columns-wrapper">
         <div class="img_home">
             <img class="img_dimens" src="public/img/home2.jpg" alt="Foto Iracema Rodrigues">

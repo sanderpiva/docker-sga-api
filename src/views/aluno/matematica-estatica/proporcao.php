@@ -3,11 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-/*
-if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
-    session_start();
-    $_SESSION['pa_status'] = 1; // Define o status da atividade na sessão
-}*/
+
 ?>
 
 
@@ -53,7 +49,7 @@ if (isset($_POST['a1']) && isset($_POST['r']) && isset($_POST['n'])) {
         <a class="btn_dashboard" href="index.php?controller=aluno&action=showStaticServicesPage">Finalizar</a>
     </div>
 
-</body><br><br>
+</body><br><br><br><br><br><br><br><br><br><br>
 <footer>
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>

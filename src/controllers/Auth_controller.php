@@ -10,6 +10,10 @@ class Auth_controller {
     }
 
     public function showLoginForm() {
+
+        //$clima = $this->authModel->getWeather();  //openweathermap
+        $clima = $this->authModel->getWeather("Machado,MG");
+        
         require_once __DIR__ . '/../views/auth/Login.php';
     }
 
@@ -129,6 +133,5 @@ class Auth_controller {
         }
   
     }
-
 }
 ?>
