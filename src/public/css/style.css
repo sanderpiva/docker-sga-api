@@ -56,6 +56,28 @@
     
 }
 
+
+/* Para telas menores que 350px */
+@media screen and (max-width: 350px) {
+    .content-columns-wrapper {
+        flex-direction: column;
+        align-items: center; /* centraliza imagem e login */
+        text-align: center;
+    }
+
+    .img_home {
+        order: 1; /* aparece primeiro */
+        margin-bottom: 10px;
+    }
+
+    .form_container {
+        order: 2; /* aparece depois */
+        width: 100%; /* ocupa a largura disponível */
+        max-width: 300px;
+    }
+}
+
+
 /* Estilos para o formulário em si */
 .form {
     display: flex;
@@ -152,14 +174,6 @@ a{
 
 .servicos{
     margin-top: 380px;
-}
-
-.clima{
-    background-color:#e8f4ff;
-    padding:10px;
-    border-radius:8px;
-    text-align:center;
-    margin-bottom:20px;
 }
 
 h1, h3{

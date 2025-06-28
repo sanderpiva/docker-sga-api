@@ -207,32 +207,41 @@ class AuthModel {
         }
     }*/
 
-    public function getWeather($city = "Machado") { // Ajuste o default para uma cidade real
-
+    public function getWeather($city = "Machado") {
         $latitude = -21.6845;
         $longitude = -45.922;
 
-        $weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude={$latitude}&longitude={$longitude}&current_weather=true&forecast_days=1&timezone=America%2FSao_Paulo&lang=pt";
+        $weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude={$latitude}&longitude={$longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&forecast_days=1&timezone=America%2FSao_Paulo&lang=pt";
 
         try {
             $weatherResponse = file_get_contents($weatherUrl);
 
             if ($weatherResponse === FALSE) {
                 error_log("Erro ao buscar clima: file_get_contents falhou para URL: " . $weatherUrl);
-                echo "</pre>"; // Fecha a tag <pre> antes de sair
                 return null;
             }
 
             $weatherData = json_decode($weatherResponse, true);
-            
+
             if (!isset($weatherData['current_weather'])) {
                 error_log("Dados de clima 'current_weather' não encontrados na resposta da Open-Meteo.");
                 return null;
             }
 
+            // Dados principais
             $temp = $weatherData['current_weather']['temperature'];
             $weathercode = $weatherData['current_weather']['weathercode'];
+            $tempMax = $weatherData['daily']['temperature_2m_max'][0] ?? null;
+            $tempMin = $weatherData['daily']['temperature_2m_min'][0] ?? null;
 
+            // Verifica se é dia ou noite com base em sunrise/sunset
+            $sunrise = strtotime($weatherData['daily']['sunrise'][0]);
+            $sunset = strtotime($weatherData['daily']['sunset'][0]);
+            $currentTime = strtotime("now");
+
+            $isDaytime = $currentTime >= $sunrise && $currentTime < $sunset;
+
+            // Descrições
             $weatherDescriptions = [
                 0 => 'Céu limpo',
                 1 => 'Principalmente limpo',
@@ -264,52 +273,49 @@ class AuthModel {
                 99 => 'Trovoada com granizo forte',
             ];
 
-            // Mapeamento de weathercode para emojis (muito simples)
+            // Emojis ajustados ao período do dia
             $weatherEmojis = [
-                0 => '☀️', // Céu limpo
-                1 => '🌤️', // Principalmente limpo
-                2 => '⛅', // Parcialmente nublado
-                3 => '☁️', // Nublado
-                45 => '🌫️', // Nevoeiro
-                48 => '🌫️', // Nevoeiro de geada
-                51 => '🌧️', // Chuvisco leve
-                53 => '🌧️', // Chuvisco moderado
-                55 => '🌧️', // Chuvisco denso
-                56 => '🌧️', // Chuvisco congelante leve
-                57 => '🌧️', // Chuvisco congelante denso
-                61 => '☔', // Chuva leve
-                63 => '☔', // Chuva moderada
-                65 => '☔', // Chuva forte
-                66 => '☔', // Chuva congelante leve
-                67 => '☔', // Chuva congelante forte
-                71 => '❄️', // Neve leve
-                73 => '❄️', // Neve moderada
-                75 => '❄️', // Neve forte
-                77 => '🌨️', // Grãos de neve
-                80 => '🌦️', // Pancadas de chuva leve
-                81 => '🌦️', // Pancadas de chuva moderada
-                82 => '🌧️', // Pancadas de chuva violenta
-                85 => '🌨️', // Pancadas de neve leve
-                86 => '🌨️', // Pancadas de neve forte
-                95 => '⛈️', // Trovoada
-                96 => '⛈️', // Trovoada com granizo leve
-                99 => '⛈️', // Trovoada com granizo forte
+                0 => $isDaytime ? '☀️' : '🌙',       // Céu limpo
+                1 => $isDaytime ? '🌤️' : '🌙',      // Principalmente limpo
+                2 => '⛅',                          // Parcialmente nublado
+                3 => '☁️',                         // Nublado
+                45 => '🌫️',                        // Nevoeiro
+                48 => '🌫️',                        // Nevoeiro de geada
+                51 => '🌧️',
+                53 => '🌧️',
+                55 => '🌧️',
+                56 => '🌧️',
+                57 => '🌧️',
+                61 => '☔',
+                63 => '☔',
+                65 => '☔',
+                66 => '☔',
+                67 => '☔',
+                71 => '❄️',
+                73 => '❄️',
+                75 => '❄️',
+                77 => '🌨️',
+                80 => '🌦️',
+                81 => '🌦️',
+                82 => '🌧️',
+                85 => '🌨️',
+                86 => '🌨️',
+                95 => '⛈️',
+                96 => '⛈️',
+                99 => '⛈️',
             ];
 
             return [
                 'temperatura' => round($temp),
                 'descricao' => $weatherDescriptions[$weathercode] ?? 'Condição desconhecida',
-                'icone' => $weatherEmojis[$weathercode] ?? '❓' // Retorna o emoji ou um ponto de interrogação
+                'icone' => $weatherEmojis[$weathercode] ?? '❓',
+                'temp_max' => round($tempMax),
+                'temp_min' => round($tempMin),
             ];
-            
 
         } catch (Exception $e) {
             error_log("Exceção ao buscar clima com Open-Meteo: " . $e->getMessage());
-            echo "</pre>"; 
             return null;
         }
-    
-
-    }
-   
+    } 
 }
