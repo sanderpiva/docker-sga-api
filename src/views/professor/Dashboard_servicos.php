@@ -61,7 +61,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['ti
         </div>
     </div><hr><hr><hr><hr><hr>
 
-    <footer class="servicos">
+    <footer class="homes">
         <p>Desenvolvido por Juliana e Sander</p>
     </footer>
 </body>

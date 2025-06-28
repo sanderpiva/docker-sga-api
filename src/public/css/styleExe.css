@@ -1,0 +1,126 @@
+/* Estilos específicos para esta view */
+        body.home {
+            background-color: #f4f7f6;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            padding: 20px;
+        }
+        #pa_form, #pa_result {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            text-align: center;
+        }
+        .titulo_pa {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align: left;
+        }
+        form input[type="number"] {
+            width: calc(100% - 22px); /* Ajusta a largura e considera padding/borda */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+        .btn_calcular {
+            background-color: #28a745; /* Verde para calcular */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn_calcular:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        #pa_result h3 {
+            color: #34495e;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        #pa_result pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            white-space: pre-wrap; /* Preserva espaços e quebras de linha */
+            font-family: monospace;
+            overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+        }
+        #pa_result p {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .btn_dashboard, .btn_logout {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn_dashboard:hover, .btn_logout:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .btn_logout {
+            background-color: #dc3545; /* Vermelho para logout */
+            margin-left: 10px;
+        }
+        .btn_logout:hover {
+            background-color: #c82333;
+        }
+
+        footer {
+            margin-top: auto;
+            margin-bottom: 0%;
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            max-width: 100%;
+            width: 100%;
+            font-family: sans-serif;
+        }
+
+        
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            #pa_form, #pa_result {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+            .titulo_pa {
+                font-size: 1.5em;
+            }
+            form input[type="number"] {
+                width: calc(100% - 20px);
+            }
+            .btn_calcular, .btn_dashboard, .btn_logout {
+                display: block;
+                width: 100%;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }

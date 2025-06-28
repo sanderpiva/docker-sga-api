@@ -83,9 +83,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['ti
     <br><br><br>
     <a href="index.php?controller=auth&action=logout"><em>Logout -> HomePage</em></a>
 
-  </body><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <footer>
+  </body>
+<footer class="homes">
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>
 

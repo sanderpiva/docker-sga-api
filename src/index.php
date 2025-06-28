@@ -3,21 +3,16 @@
 
 require_once __DIR__ . '/config/conexao.php'; // Este arquivo define conectarBD()
 
-// <--- ALTERADO: CHAMA A FUNÇÃO conectarBD() E ATRIBUI À VARIÁVEL $conexao
 $conexao = conectarBD();
 
-// <--- NOVO: VERIFICA SE A CONEXÃO FOI ESTABELECIDA. SE NÃO, EXIBE ERRO E ENCERRA.
 if ($conexao === null) {
-    // Você pode usar uma função de displayErrorPage aqui, se tiver uma globalmente disponível
-    // Por exemplo, se você tem 'displayErrorPage' definida em algum lugar ou pode defini-la aqui.
-    // displayErrorPage("Falha ao conectar ao banco de dados. Por favor, tente novamente mais tarde.", "index.php");
     echo "<h1>Erro Crítico: Não foi possível conectar ao banco de dados.</h1>";
     echo "<p>Por favor, verifique as configurações do banco de dados e se o serviço está ativo.</p>";
     error_log("Erro Crítico: Conexão com o banco de dados falhou em index.php.");
     exit(); // Encerra a execução do script
 }
 
-//ate aqui manteve
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

@@ -71,9 +71,8 @@ $all_activities_completed = ($pa_status == 1 && $pg_status == 1 && $porcentagem_
     </div>
     <hr>
     <a href="index.php?controller=auth&action=logout" style="text-align: center; display: block;">Logout →</a>
-</body><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br>
-<footer>
+</body>
+<footer class="homes">
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>
 

@@ -40,7 +40,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true || $_SESSION['ti
     </div>
     <a href="index.php?controller=auth&action=logout">Logout -> HomePage</a>
 </body>
-<footer>
+<footer class="homes">
     <p>Desenvolvido por Juliana e Sander</p>
 </footer>
 </html>

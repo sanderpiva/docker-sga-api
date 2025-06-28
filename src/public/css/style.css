@@ -393,6 +393,20 @@ footer.servicos {
     width: 100%;
 }
 
+footer.homes{
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Seus estilos existentes */
+    background-color: #f4f4f4;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    z-index: 1000; /* Garante que o footer fique visível acima de outros elementos */
+
+}
+
 .buttonInicioProfessor {
     background-color: #168019;
     color: white;
