@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -45,6 +44,7 @@
         <?php if (isset($turma_selecionada) && isset($disciplina_selecionada) && !empty($conteudos)) : ?>
             <a class="button-primary" href="">Prova</a>
         <?php endif; ?>
+        
         <a class="button-danger" href="index.php?controller=auth&action=logout">Logout -> HomePage</a>
     </div>
 

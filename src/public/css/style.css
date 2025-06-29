@@ -290,7 +290,7 @@ h1, h3{
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: sans-serif;
+    font-family: sans-serif;
 }
 
 th, td {
@@ -320,6 +320,7 @@ tbody tr:last-child {
     max-width: 900px; /* Largura máxima para telas maiores */
     margin: 0 auto; /* Centraliza o container na tela */
     flex-direction: column; /* Organiza os filhos em coluna */
+    font-family: sans-serif;
 }
 
 .sections-wrapper {

@@ -103,5 +103,7 @@ class ProvaModel {
         $stmt = $this->db->prepare("DELETE FROM prova WHERE id_prova = :id");
         return $stmt->execute([':id' => $id]);
     }
+
+    //
 }
 ?>

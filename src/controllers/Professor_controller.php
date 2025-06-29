@@ -4,16 +4,19 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 
-require_once __DIR__ . '/../models/Professor_model.php'; 
+require_once __DIR__ . '/../models/Professor_model.php';
+require_once __DIR__ . '/../models/TabelaDadosAlgebrando_model.php'; 
 
 class Professor_controller
 {
     private $professorModel;
     private $conexao;
+    private $tabeladadosAlgebrandoModel;
 
     public function __construct($conexao) {
         $this->conexao = $conexao;
         $this->professorModel = new ProfessorModel($this->conexao);
+        $this->tabeladadosAlgebrandoModel = new TabelaDadosAlgebrandoModel($this->conexao);
     }
 
     public function list() {
@@ -31,7 +34,7 @@ class Professor_controller
     }
 
     public function showResultsPage() {
-        echo "<h1>Página de Resultados dos Alunos</h1>";
+        $registros = $this->tabeladadosAlgebrandoModel->getAllRecords(); // Obtém todos os registros da tabela
         require_once __DIR__ . '/../views/professor/Dashboard_resultados.php';
     }
 
